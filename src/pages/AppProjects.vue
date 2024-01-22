@@ -4,9 +4,11 @@
             List Projects
         </h1>
         <ul>
-            <li v-for="project in projects" :key="project.id">
+            <li v-for="project in store.projects" :key="project.id">
 
-                {{ project.title }}
+                <router-link :to="{ name: 'single-project', params: { slug: project.slug } }" class="btn btn-primary">
+                    {{ project.title }}
+                </router-link>
             </li>
         </ul>
     </div>
@@ -27,8 +29,8 @@ export default {
         getAllProjects() {
             axios.get(`${this.store.apiUrl}/projects`).then((res) => {
                 console.log(res.data);
-                this.projects = res.data.results.data;
-                console.log(this.projects);
+                this.store.projects = res.data.results.data;
+                console.log(this.store.projects);
 
             }).catch((err) => {
 
