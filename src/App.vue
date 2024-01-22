@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <h1>
-      Ciao
-    </h1>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -38,7 +34,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@use "./assets/styles/partials/variables.scss" as *;
+@use "../assets/styles/partials/variables.scss" as *;
 
 h1 {
   color: $font-color;
