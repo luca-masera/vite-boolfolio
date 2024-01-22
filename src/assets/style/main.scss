@@ -1,0 +1,8 @@
+@use "./partials/variables" as *;
+$fa-font-path: "../webfonts";
+@import "@fortawesome/fortawesome-free/scss/fortawesome.scss";
+@import "@fortawesome/fortawesome-free/scss/brands.scss";
+@import "@fortawesome/fortawesome-free/scss/regular.scss";
+@import "@fortawesome/fortawesome-free/scss/solid.scss";
+
+@import "bootstrap/scss/bootstrap";
