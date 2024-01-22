@@ -19,17 +19,10 @@ export default {
   },
   methods: {
 
-    getApiTest() {
-      axios.get(this.store.apiUrl + "/projects").then((res) => {
-        console.log(res.data);
-        //this.projects = res.data.results.data;
-        //console.log(this.projects)
-      });
-    },
   },
 
   mounted() {
-    this.getApiTest();
+
   },
 };
 </script>

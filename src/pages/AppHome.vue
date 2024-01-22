@@ -22,15 +22,11 @@ export default {
     },
     methods: {
 
-        //getApiTest() {
-        //  axios.get(this.store.apiUrl + "projects").then((res) => {
-        //    console.log(res.data);
-        // });
-        // },
+      
     },
 
     mounted() {
-        // this.getApiTest;
+        
     },
 };
 </script>

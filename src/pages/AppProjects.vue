@@ -4,7 +4,10 @@
             List Projects
         </h1>
         <ul>
-            <li v-for="project in store.projects" :key="project.id"> {{ project.title }} </li>
+            <li v-for="project in projects" :key="project.id">
+
+                {{ project.title }}
+            </li>
         </ul>
     </div>
 </template>
@@ -22,9 +25,10 @@ export default {
     },
     methods: {
         getAllProjects() {
-            axios.get(`${this.store.apiUrl}projects`).then((res) => {
+            axios.get(`${this.store.apiUrl}/projects`).then((res) => {
                 console.log(res.data);
-                this.store.projects = res.data.results.data;
+                this.projects = res.data.results.data;
+                console.log(this.projects);
 
             }).catch((err) => {
 
