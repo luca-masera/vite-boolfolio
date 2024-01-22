@@ -8,7 +8,7 @@
 
 <script>
 import axios from 'axios';
-import { store } from "../data/store";
+import { store } from "../store";
 
 export default {
     name: 'AppHome',
@@ -36,4 +36,4 @@ export default {
 </script>
 <style lang="scss" scoped>
 @use "../assets/styles/partials/variables.scss" as *;
-</style>
+</style>../store

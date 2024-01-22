@@ -4,7 +4,7 @@
 
 <script>
 import axios from "axios";
-import { store } from "./data/store.js";
+import { store } from "./store.js";
 
 export default {
   name: 'App',
@@ -34,9 +34,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@use "../assets/styles/partials/variables.scss" as *;
+@use "./assets/styles/partials/variables.scss" as *;
 
 h1 {
   color: $font-color;
 }
 </style>
+./store.js
