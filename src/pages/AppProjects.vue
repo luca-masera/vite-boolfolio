@@ -1,24 +1,29 @@
 <template>
     <div>
-        <h1>
-            List Projects
-        </h1>
-        <ul>
-            <li v-for="project in store.projects" :key="project.id">
-
-                <router-link :to="{ name: 'single-project', params: { slug: project.slug } }" class="btn btn-primary">
-                    {{ project.title }}
-                </router-link>
-            </li>
-        </ul>
+        <main class="container">
+            <h1>List Projects</h1>
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3" v-for="project in store.projects" :key="project.id">
+                    <AppCard :project="project" />
+                </div>
+            </div>
+        </main>
     </div>
 </template>
 
 <script>
-import axios from "axios";
+
 import { store } from "../store.js";
+import axios from "axios";
+import AppCard from "../components/AppCard.vue";
 export default {
     name: 'AppProjects',
+
+    components: {
+        AppCard
+    },
+
+
     data() {
 
         return {
@@ -26,10 +31,10 @@ export default {
         }
     },
     methods: {
-        getAllProjects() {
-            axios.get(`${this.store.apiUrl}/projects`).then((res) => {
+        getAllProject() {
+            axios.get(this.store.apiUrl + "projects").then((res) => {
                 console.log(res.data);
-                this.store.projects = res.data.results.data;
+                this.store.projects = res.data.results;
                 console.log(this.store.projects);
 
             }).catch((err) => {
@@ -39,7 +44,7 @@ export default {
         },
     },
     created() {
-        this.getAllProjects();
+        this.getAllProject();
     }
 
 

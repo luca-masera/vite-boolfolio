@@ -2,6 +2,7 @@
     <div>
         <h2>{{ project.title }}</h2>
         <img :src="`${store.imgPath}${project.image}`" :alt="project.title">
+        <p> {{ project.body }}</p>
     </div>
 </template>
     
