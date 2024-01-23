@@ -1,19 +1,14 @@
 <template>
     <div>
         <h1>
-            ciao
+            Home
         </h1>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
-import { store } from "../store";
-
 export default {
     name: 'AppHome',
-
-
     data() {
 
         return {
@@ -22,14 +17,12 @@ export default {
     },
     methods: {
 
-      
+
     },
 
     mounted() {
-        
+
     },
 };
 </script>
-<style lang="scss" scoped>
-@use "../assets/styles/partials/variables.scss" as *;
-</style>../store
+<style lang="scss" scoped></style>

@@ -1,6 +1,10 @@
 <template>
-    <h2>{{ project.title }}</h2>
+    <div>
+        <h2>{{ project.title }}</h2>
+        <img :src="`${store.imgPath}${project.image}`" :alt="project.title">
+    </div>
 </template>
+    
 
 <script>
 import axios from 'axios';
@@ -19,10 +23,19 @@ export default {
     methods: {
 
         getProjectData() {
-            console.log(this.$route);
-            axios.get(`${this.store.apiUrl}/projects/${this.$route.params.slug}`).then((res) => {
-                console.log(res.data);
+            //console.log(this.$route);
+            axios.get(this.store.apiUrl + "projects/" + this.$route.params.slug).then((res) => {
+                //console.log(res.data);
                 this.project = res.data.results
+                console.log(this.project)
+                //if (res.data.results) {
+                //   this.project = res.data.results
+
+                //} else {
+
+                //this.$router.push({ name: 'not-found' })
+                //}   
+
             })
         }
     },
@@ -34,3 +47,4 @@ export default {
 </script>
 
 <style lang="scss" scoped></style>
+

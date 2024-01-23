@@ -5,7 +5,7 @@ import SingleProject from "./pages/SingleProject.vue";
 import NotFound from "./pages/NotFound.vue";
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
 
         {
@@ -24,7 +24,7 @@ const router = createRouter({
             component: SingleProject,
         },
         {
-            path: "/:pathFatch(.*)*",
+            path: "/:pathMatch(.*)*",
             name: "not-found",
             component: NotFound,
         }
