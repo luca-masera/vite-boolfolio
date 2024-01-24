@@ -8,7 +8,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item" v-for="item in menu" :key="index">
+                    <li class="nav-item" v-for="(item, index) in menu" :key="index">
                         <router-link class="nav-link" active-class="active" :to="{ name: item.name }">{{
                             item.label }}</router-link>
                     </li>

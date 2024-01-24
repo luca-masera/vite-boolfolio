@@ -7,6 +7,23 @@
                     <AppCard :project="project" />
                 </div>
             </div>
+            <nav class="d-flex justify-content-center align-items-center my-4">
+                <ul class="pagination">
+                    <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+                        <button class="page-link" :disabled="currentPage === 1"
+                            @click="getAllProject(currentPage - 1)">Previous
+                        </button>
+                    </li>
+                    <li class="page-item" v-for="n in lastPage">
+                        <button class="page-link" @click="getAllProject(n)">{{ n }}</button>
+                    </li>
+                    <li class="page-item" :class="{ 'disabled': currentPage === lastPage }">
+                        <button class="page-link" :disabled="currentPage === lastPage"
+                            @click="getAllProject(currentPage + 1)">Next
+                        </button>
+                    </li>
+                </ul>
+            </nav>
         </main>
     </div>
 </template>
@@ -27,25 +44,25 @@ export default {
     data() {
 
         return {
-            store
+            store,
         }
     },
     methods: {
-        getAllProject() {
-            axios.get(this.store.apiUrl + "projects").then((res) => {
+        getAllProject(pageNum) {
+            axios.get(`${this.store.apiUrl}projects`, { params: { page: pageNum } }).then((res) => {
                 console.log(res.data);
-                this.store.projects = res.data.results;
-                console.log(this.store.projects);
+                this.store.projects = res.data.results.data;
+
+                this.currentPage = res.data.results.current_page;
+                this.lastPage = res.data.results.last_page;
+                this.total = res.data.results.total;
+
 
             }).catch((err) => {
-
+                console.log(err)
             });
-
         },
     },
-    created() {
-        this.getAllProject();
-    }
 
 
 
@@ -53,4 +70,21 @@ export default {
 </script>
 
 <style lang="scss" scoped></style>
-{}
+<!--getAllProject(pageNum) {
+    axios.get(this.store.apiUrl + "projects", { params: { page: pageNum } }).then((res) => {
+        console.log(res.data);
+        this.store.projects = res.data.results;
+        this.currentPage = res.data.results.current_page;
+        this.lastPage = res.data.results.last_page;
+        this.total = res.data.results.total;
+        console.log(this.store.projects);
+
+    }).catch((err) => {
+
+    });
+
+},
+},
+created() {
+this.getAllProject(this.currentPage);
+}-->
