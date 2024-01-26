@@ -7,6 +7,12 @@
                     <AppCard :project="project" />
                 </div>
             </div>
+            <select name="type" id="type" v-model="selectedType">
+                <option value="">All</option>
+                <option v-for="type in store.types" :key="type.id" :value="type.id">
+                    {{ type.name }}
+                </option>
+            </select>
             <nav class="d-flex justify-content-center align-items-center my-4">
                 <ul class="pagination">
                     <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
@@ -45,6 +51,10 @@ export default {
 
         return {
             store,
+            currentPage: 1,
+            lastPage: null,
+            selectedType: ''
+
         }
     },
     methods: {
@@ -62,11 +72,40 @@ export default {
                 console.log(err)
             });
         },
+
+        projectType() {
+            axios.get(`${this.store.apiUrl}types`).then((res) => {
+                this.store.types = res.data.results;
+            }).catch((err) => {
+                console.error(err);
+            });
+        },
+        filterProjects() {
+            if (this.selectedType) {
+                axios.get(`${this.store.apiUrl}projects`, { params: { type: this.selectedType } }).then((res) => {
+                    this.store.projects = res.data.results.data;
+                    console.log(res.data)
+
+                }).catch((err) => {
+                    console.error(err);
+                });
+
+            } else {
+                this.getAllProject(this.currentPage);
+            }
+        }
     },
 
-
-
+    created() {
+        this.getAllProject(this.currentPage);
+        this.projectType();
+        this.filterProjects(this.currentPage)
+    }
 }
+
+
+
+
 </script>
 
 <style lang="scss" scoped></style>
