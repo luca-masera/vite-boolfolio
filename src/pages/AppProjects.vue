@@ -100,7 +100,16 @@ export default {
         this.getAllProject(this.currentPage);
         this.projectType();
         this.filterProjects(this.currentPage)
+    },
+
+    watch: {
+        selectedType(newVal, oldVal) {
+            this.filterProjects();
+        },
     }
+
+
+
 }
 
 
